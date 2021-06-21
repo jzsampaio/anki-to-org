@@ -1,0 +1,22 @@
+Fable is a	dialect of F# that executes directly in your browser.
+Parentheses are optional for function arguments, except for	when you use an explicit type annotation
+If you require a mutable binding, you can use	let mutable syntax 1 2 3let mutable otherNumber = 2 otherNumber <- otherNumber + 1
+What are the two boolean values in F#?	true false (lowercase)
+What is the casing for the boolean values?	All lower case true false
+/// A simple tuple of integers.	let tuple1 = (1, 2, 3)
+Tuples are normally objects, but they can also be represented as structs. How?	1let sampleStructTuple = struct (1, 2)
+How to create list, array, and sequence	1 2 3let list2 = [ 1; 2; 3 ] let array3 = [| 1 .. 1000 |] let numbersSeq = seq { 1 .. 1000 }
+Is this array or list? Is it good for random access or no? let xs = [ 1; 2; 3 ]	List Bad for random access
+Syntax for defining and instanting a record	"1 2 3type ContactCard = { Name : string; Phone : string; Verified : bool } let contact1 = { Name = ""Alf""; Phone = ""(206) 555-0157""; Verified = false }"
+Syntax for instantiating a record through copy-and-update	"1let contact2 = { contact1 with Phone = ""(206) 555-0112""; Verified = true }"
+Syntax for adding methods to a record	1 2 3 4 5 6 7type MyRecordWithMethods = { x: int } member this.setX z = {this with x = z}
+You can also represent Records as structs. This is done with the _ attribute	[<Struct>] 1 2 3 4 5[<Struct>] type ContactCardStruct = { Name : string Phone : string Verified : bool }
+1. Simplest discriminated syntax for when all possible options are simple names 2. Discriminated union where one of the options is a string or other primitive type 3. Discriminated union where one option is of a anonymous named tuple type	1 2 3 4 5 6 7 8 9 10 11type Suit = | Hearts | Clubs type Rank = | Value of int | Ace type Shape = | Circle of radius: float | Triangle of height: float * width: float
+Syntax for declaring list	1 2 3let list2 = [ 1; 2; 3 ]
+Declare array	1 2 3 let array3 = [| 1 .. 1000 |]
+Declare sequence	let numbersSeq = seq { 1 .. 1000 }
+What's wrong with this code? 1 2type Foo = | bar of string * string	Discriminated union cases and exception labels must be uppercase identifiers
+If 2 discriminated unions share a given name, how to specify the construction of a value of a given DU? 1 2 3 4 5 6type Foo = | Bar of string * string | Zoom of string type Foo2 = | Bar of int * int	"You use he full path to the constructor: 1 2let x = Foo.Bar (""foo"", ""bar"") let x2 = Foo2.Bar (1, 2)"
+How to declare a mutable variable?	1let mutable x = 0
+How to update the value of a mutable value?	With the `<-` operator 1x <- 1
+How to start the interactive F# prompt?	dotnet fsi
